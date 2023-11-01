@@ -19,8 +19,7 @@ func _physics_process(delta):
 		velocity.y = min(velocity.y + gravity * delta, max_velocity)
 
 	if Input.is_action_just_pressed("jump") and can_player_jump(): #is_on_floor():
-		velocity.y -= jump_force
-		jump_count += 1
+		jump(jump_force)
 		
 	var direction: float = Input.get_axis("move_left", "move_right")
 	if direction != 0:
@@ -39,11 +38,14 @@ func update_animation(direction: float) -> void:
 			animated_sprite.play("run")
 	else:
 		if is_player_jumping(velocity.y):
-			print("jump")
 			animated_sprite.play("jump")
 		else:
-			print("fall")
 			animated_sprite.play("fall")
+ 
+func jump(jump_force: int) -> void:
+	#velocity.y -= jump_force
+	velocity.y = - jump_force
+	jump_count += 1
 	
 func can_player_jump() -> bool:
 	return jump_count < 2
