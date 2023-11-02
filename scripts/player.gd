@@ -42,9 +42,9 @@ func update_animation(direction: float) -> void:
 		else:
 			animated_sprite.play("fall")
  
-func jump(jump_force: int) -> void:
-	#velocity.y -= jump_force
-	velocity.y = - jump_force
+func jump(force: int) -> void:
+	#velocity.y -= force
+	velocity.y = - force
 	jump_count += 1
 	
 func can_player_jump() -> bool:

@@ -1,5 +1,7 @@
 extends Node2D
+class_name Level
 
+@onready var player = $Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +16,12 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 
 
-func _on_death_zone_body_entered(body: CharacterBody2D):
-	body.velocity = Vector2.ZERO
-	body.global_position = $PlayerSpawnPoint.global_position
+func _on_death_zone_body_entered(_body: CharacterBody2D) -> void:
+	reset_player()
+	
+func _on_trap_touched_player() -> void:
+	reset_player()
 
+func reset_player() -> void :
+	player.velocity = Vector2.ZERO
+	player.global_position = $PlayerSpawnPoint.global_position
