@@ -58,5 +58,3 @@ position = Vector2(142, 143)
 position = Vector2(32, 174)
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
-[connection signal="touched_player" from="Traps/Saw" to="." method="_on_trap_touched_player"]
-[connection signal="touched_player" from="Traps/SpikedBall" to="." method="_on_trap_touched_player"]
