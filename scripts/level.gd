@@ -6,6 +6,10 @@ class_name Level
 @onready var end_area = $EndArea as EndArea
 @onready var death_zone = $DeathZone
 @onready var hud = $UILayer/HUD as Hud
+@onready var ui_layer = $UILayer as UILayer
+
+
+@export var is_final_level: bool = false
 
 @export var next_level: PackedScene = null
 
@@ -60,12 +64,16 @@ func reset_timer() -> void :
 	
 func _on_end_area_body_entered(body) -> void:
 	if body is Player:
-		if next_level != null:
+		if next_level != null or is_final_level:
 			timer.stop()
 			end_area.animate()
 			body.active = false
+
 			await get_tree().create_timer(1.5).timeout
-			get_tree().change_scene_to_packed( next_level)
+			if is_final_level:
+				ui_layer.display_win_screen(true)
+			else:
+				get_tree().change_scene_to_packed( next_level)
 
 func _on_level_timer_timeout() -> void:
 	set_time_left(time_left -1)
