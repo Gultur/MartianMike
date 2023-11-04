@@ -5,7 +5,7 @@ class_name Level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var traps: Array[Trap] = get_tree().get_nodes_in_group("traps") as Array[Trap]
+	var traps = (get_tree().get_nodes_in_group("traps")) as Array[Trap]
 	
 	for trap in traps:
 		#trap.connect("touched_player", _on_trap_touched_player)

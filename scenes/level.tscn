@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c52e5xv1gr62p"]
+[gd_scene load_steps=10 format=3 uid="uid://c52e5xv1gr62p"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_omk41"]
 [ext_resource type="PackedScene" uid="uid://4k4iv4txl65v" path="res://scenes/player.tscn" id="2_lw6ck"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dkiun762h7psj" path="res://scenes/saw.tscn" id="3_xfk8s"]
 [ext_resource type="PackedScene" uid="uid://dxmfncruvlu34" path="res://scenes/jump_pad.tscn" id="4_efi74"]
 [ext_resource type="PackedScene" uid="uid://cexwoek04ko7j" path="res://scenes/spiked_ball.tscn" id="6_gt6h1"]
+[ext_resource type="PackedScene" uid="uid://d3eu15l3yrp80" path="res://scenes/tile_map.tscn" id="7_4pegi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8okeo"]
 size = Vector2(1068, 20)
@@ -16,12 +17,16 @@ size = Vector2(2091, 20)
 [node name="Level" type="Node2D"]
 script = ExtResource("1_omk41")
 
+[node name="TileMap" parent="." instance=ExtResource("7_4pegi")]
+position = Vector2(0, -2)
+layer_0/tile_data = PackedInt32Array(851965, 393217, 2, 851966, 458753, 2, 851967, 458753, 2, 786432, 458753, 2, 786433, 458753, 2, 786434, 458753, 2, 786435, 458753, 2, 786436, 458753, 2, 786437, 458753, 2, 786438, 458753, 2, 786439, 458753, 2, 786440, 458753, 2, 786441, 458753, 2, 786442, 458753, 2, 786443, 458753, 2, 786444, 458753, 2, 786445, 458753, 2, 786446, 458753, 2, 786447, 458753, 2, 786448, 458753, 2, 786449, 458753, 2, 786450, 458753, 2, 786451, 458753, 2, 786452, 458753, 2, 786453, 458753, 2, 786454, 458753, 2, 786455, 458753, 2, 786456, 458753, 2, 786457, 524289, 2, 720893, 393217, 0, 786429, 393217, 1, 720894, 458753, 0, 786430, 458753, 1, 720895, 458753, 0, 786431, 458753, 1, 655360, 458753, 0, 720896, 458753, 1, 655361, 458753, 0, 720897, 458753, 1, 655362, 458753, 0, 720898, 458753, 1, 655363, 458753, 0, 720899, 458753, 1, 655364, 458753, 0, 720900, 458753, 1, 655365, 458753, 0, 720901, 458753, 1, 655366, 458753, 0, 720902, 458753, 1, 655367, 458753, 0, 720903, 458753, 1, 655368, 458753, 0, 720904, 458753, 1, 655369, 458753, 0, 720905, 458753, 1, 655370, 458753, 0, 720906, 458753, 1, 655371, 458753, 0, 720907, 458753, 1, 655372, 458753, 0, 720908, 458753, 1, 655373, 458753, 0, 720909, 458753, 1, 655374, 458753, 0, 720910, 458753, 1, 655375, 458753, 0, 720911, 458753, 1, 655376, 458753, 0, 720912, 458753, 1, 655377, 458753, 0, 720913, 458753, 1, 655378, 458753, 0, 720914, 458753, 1, 655379, 458753, 0, 720915, 458753, 1, 655380, 458753, 0, 720916, 458753, 1, 655381, 458753, 0, 720917, 458753, 1, 655382, 458753, 0, 720918, 458753, 1, 655383, 458753, 0, 720919, 458753, 1, 655384, 458753, 0, 720920, 458753, 1, 655385, 524289, 0, 720921, 524289, 1, 393218, 1179649, 1, 393217, 1179649, 1, 393219, 1245185, 1, 393216, 1114113, 1, 458774, 1114113, 2, 458775, 1179649, 2, 458776, 1245185, 2, 262165, 1114113, 1, 262166, 1179649, 1, 262167, 1245185, 1, 524280, 393217, 0, 589816, 393217, 1, 655352, 393217, 2, 524281, 458753, 0, 589817, 458753, 1, 655353, 458753, 2, 524282, 524289, 0, 589818, 524289, 1, 655354, 524289, 2)
+
 [node name="Player" parent="." instance=ExtResource("2_lw6ck")]
-position = Vector2(231, 141)
+position = Vector2(230, 102)
 collision_mask = 30
 
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(-658, 197)
+position = Vector2(268, -52)
 collision_layer = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
@@ -42,19 +47,19 @@ position = Vector2(144.5, 0)
 shape = SubResource("RectangleShape2D_oy53j")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="."]
-position = Vector2(230, 140)
+position = Vector2(230, 88)
 
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="JumpPad" parent="Objects" instance=ExtResource("4_efi74")]
-position = Vector2(311, 187)
+position = Vector2(310, 161)
 
 [node name="Traps" type="Node2D" parent="."]
 
 [node name="Saw" parent="Traps" instance=ExtResource("3_xfk8s")]
-position = Vector2(142, 143)
+position = Vector2(143, 117)
 
 [node name="SpikedBall" parent="Traps" instance=ExtResource("6_gt6h1")]
-position = Vector2(32, 174)
+position = Vector2(32, 142)
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
