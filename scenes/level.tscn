@@ -2,27 +2,26 @@
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_omk41"]
 [ext_resource type="PackedScene" uid="uid://c5nf42l8hsyf1" path="res://scenes/background.tscn" id="2_5ohrf"]
+[ext_resource type="PackedScene" uid="uid://dd4caw5nrqn75" path="res://scenes/level_2.tscn" id="2_6ql0r"]
 [ext_resource type="PackedScene" uid="uid://4k4iv4txl65v" path="res://scenes/player.tscn" id="2_lw6ck"]
 [ext_resource type="Texture2D" uid="uid://by6wdp68h4rmr" path="res://assets/textures/bg/Green.png" id="3_5xjj8"]
-[ext_resource type="Texture2D" uid="uid://25uvl5ghdm26" path="res://icon.svg" id="3_tud61"]
 [ext_resource type="PackedScene" uid="uid://dkiun762h7psj" path="res://scenes/saw.tscn" id="3_xfk8s"]
 [ext_resource type="PackedScene" uid="uid://dxmfncruvlu34" path="res://scenes/jump_pad.tscn" id="4_efi74"]
+[ext_resource type="PackedScene" uid="uid://bhux50jai2hpf" path="res://scenes/ui_layer.tscn" id="5_mwh4h"]
 [ext_resource type="PackedScene" uid="uid://cexwoek04ko7j" path="res://scenes/spiked_ball.tscn" id="6_gt6h1"]
 [ext_resource type="PackedScene" uid="uid://d3eu15l3yrp80" path="res://scenes/tile_map.tscn" id="7_4pegi"]
+[ext_resource type="PackedScene" uid="uid://b27ildh4qvhm4" path="res://scenes/death_zone.tscn" id="9_85hub"]
 [ext_resource type="PackedScene" uid="uid://tc6aq2ggwyne" path="res://scenes/start_area.tscn" id="10_wybtu"]
 [ext_resource type="PackedScene" uid="uid://cb7idf0ekjfvb" path="res://scenes/end_area.tscn" id="11_qkcy6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8okeo"]
-size = Vector2(1068, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oy53j"]
-size = Vector2(2091, 20)
-
 [node name="Level" type="Node2D"]
 script = ExtResource("1_omk41")
+next_level = ExtResource("2_6ql0r")
 
 [node name="Background" parent="." instance=ExtResource("2_5ohrf")]
 bg_texture = ExtResource("3_5xjj8")
+
+[node name="UILayer" parent="." instance=ExtResource("5_mwh4h")]
 
 [node name="TileMap" parent="." instance=ExtResource("7_4pegi")]
 position = Vector2(0, -2)
@@ -38,26 +37,7 @@ position = Vector2(655, 95)
 position = Vector2(230, 102)
 collision_mask = 30
 
-[node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(268, -52)
-collision_layer = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Ground"]
-position = Vector2(524, 5.96046e-08)
-scale = Vector2(8.34375, 0.15625)
-texture = ExtResource("3_tud61")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2(524, 0)
-shape = SubResource("RectangleShape2D_8okeo")
-
-[node name="DeathZone" type="Area2D" parent="."]
-position = Vector2(10, 295)
-collision_layer = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
-position = Vector2(144.5, 0)
-shape = SubResource("RectangleShape2D_oy53j")
+[node name="DeathZone" parent="." instance=ExtResource("9_85hub")]
 
 [node name="Objects" type="Node2D" parent="."]
 
@@ -71,5 +51,3 @@ position = Vector2(143, 117)
 
 [node name="SpikedBall" parent="Traps" instance=ExtResource("6_gt6h1")]
 position = Vector2(32, 142)
-
-[connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]

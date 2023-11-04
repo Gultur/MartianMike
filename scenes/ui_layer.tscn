@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhux50jai2hpf"]
+
+[ext_resource type="PackedScene" uid="uid://dy14xvghmvygv" path="res://scenes/hud.tscn" id="1_kljo6"]
+
+[node name="UILayer" type="CanvasLayer"]
+
+[node name="HUD" parent="." instance=ExtResource("1_kljo6")]
