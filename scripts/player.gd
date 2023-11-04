@@ -11,7 +11,6 @@ var jump_count: int = 0
 
 @onready var animated_sprite = $AnimatedSprite2D
 
-
 func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
@@ -46,7 +45,7 @@ func update_animation(direction: float) -> void:
 			animated_sprite.play("fall")
  
 func jump(force: int) -> void:
-	#velocity.y -= force
+	AudioPlayer.play_sfx("jump")
 	velocity.y = - force
 	jump_count += 1
 	

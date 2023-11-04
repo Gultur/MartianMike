@@ -48,12 +48,10 @@ func _process(_delta):
 
 
 func _on_death_zone_body_entered(_body: CharacterBody2D) -> void:
-	reset_player()
-	reset_timer()
+	retry()
 	
 func _on_trap_touched_player() -> void:
-	reset_player()
-	reset_timer()
+	retry()
 
 func reset_player() -> void :
 	player.velocity = Vector2.ZERO
@@ -78,11 +76,13 @@ func _on_end_area_body_entered(body) -> void:
 func _on_level_timer_timeout() -> void:
 	set_time_left(time_left -1)
 	if time_left < 0:
-		reset_player()
-		reset_timer()
-		
+		retry()
 
 func set_time_left(time: int) -> void:
 	time_left = time
 	hud.set_time_label(time_left)
 	
+func retry() -> void:
+	AudioPlayer.play_sfx("hurt")
+	reset_player()
+	reset_timer()
