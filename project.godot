@@ -61,6 +61,7 @@ reset={
 2d_physics/layer_4="World"
 2d_physics/layer_5="Deathzone"
 2d_physics/layer_6="Traps"
+2d_physics/layer_7="Exit"
 
 [rendering]
 

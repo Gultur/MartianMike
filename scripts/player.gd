@@ -4,6 +4,7 @@ class_name Player
 @export var gravity: float = 400.00
 @export var speed: int = 125
 @export var jump_force: int = 200
+@export var active: bool = true
 
 var max_velocity: float = 500.00
 var jump_count: int = 0
@@ -18,11 +19,13 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y = min(velocity.y + gravity * delta, max_velocity)
 
-	if Input.is_action_just_pressed("jump") and can_player_jump(): #is_on_floor():
-		jump(jump_force)
+	var direction: float = 0.0
+	if active:
+		if Input.is_action_just_pressed("jump") and can_player_jump(): #is_on_floor():
+			jump(jump_force)
+		direction = Input.get_axis("move_left", "move_right")
 		
-	var direction: float = Input.get_axis("move_left", "move_right")
-	if direction != 0:
+	if direction != 0.0:
 		var is_moving_left = (direction == -1)
 		animated_sprite.flip_h = is_moving_left #we only flip when player move left
 	velocity.x = direction * speed
@@ -55,7 +58,7 @@ func is_player_idle(direction: float) -> bool:
 	
 func is_player_jumping(velocity_y: float) -> bool:
 	return velocity_y < 0
-	
+
 #const SPEED = 300.0
 #const JUMP_VELOCITY = -400.0
 #
